@@ -55,7 +55,7 @@ export const questions: Question[] = [
     text: "If you were away for a month, could someone else run your payroll?",
     options: [
       { text: "No, calculations are on a spreadsheet/in my head.", points: 0 },
-      { text: "Yes, it's all in Xero Payroll / PayHero.", points: 10 },
+      { text: "Yes, it's all in Xero Payroll or dedicated software (e.g. Smartly, PayHero).", points: 10 },
       { text: "N/A: I don't have employees.", points: 0, isNA: true },
     ],
   },
@@ -103,26 +103,33 @@ export const calculateHealthScore = (answers: Record<number, number>) => {
     }
   });
 
-  // Prevent divide by zero if they answered N/A to everything
   const percentage = maxPossible === 0 ? 0 : Math.round((totalPoints / maxPossible) * 100);
 
   let title = "";
   let description = "";
   let action = "";
+  let ctaText = "";
+  let ctaUrl = "";
 
   if (percentage < 40) {
     title = "The Manual Operator";
     description = "You are working for Xero; Xero isn't working for you. You are likely spending 4-6 hours a month on tasks that could be automated.";
     action = "Stop typing bills manually. Set up 'Auto-forwarding' today.";
+    ctaText = "Book a Rescue Session";
+    ctaUrl = "https://nurture.kiwi";
   } else if (percentage < 80) {
     title = "The Spreadsheet Survivor";
     description = "You're safe, but slow. You're doing the basics right, but missing out on the 'magic' features that save time.";
     action = "Turn on 'Invoice Reminders' and set up 3 Bank Rules this week.";
+    ctaText = "Book a Rescue Session";
+    ctaUrl = "https://nurture.kiwi";
   } else {
     title = "The Cloud Native";
     description = "Your books are a well-oiled machine. You have audit trails, automation, and peace of mind.";
-    action = "Ready to scale? Let's talk about forecasting with YourBudget.";
+    action = "Since your data is clean, you're ready for the next level: Forecasting.";
+    ctaText = "Try Runway.Visualiser";
+    ctaUrl = "https://yourbudget.xyz";
   }
 
-  return { percentage, title, description, action };
+  return { percentage, title, description, action, ctaText, ctaUrl };
 };
