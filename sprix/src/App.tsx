@@ -89,7 +89,7 @@ function App() {
           <div className="mt-12 p-6 bg-slate-900/30 rounded-2xl border border-slate-800/50 text-center text-sm text-slate-500">
             <p>
               <strong>Why take this audit?</strong> <br/>
-              Most businesses use less than 20% of Xero's power. This tool was built by 
+              Most businesses use less than 50% of Xero's power. This tool was built by 
               <a href="https://nurture.kiwi" target="_blank" className="text-pink-500 hover:underline ml-1">Nurture</a> to help NZ owners stop doing manual data entry.
             </p>
           </div>
@@ -158,14 +158,21 @@ function App() {
             </div>
 
             <div className="pt-6 space-y-4 relative z-10">
+              
+              {/* --- DYNAMIC CALL TO ACTION BUTTON --- */}
               <a 
-                href="https://nurture.kiwi" 
+                href={result.ctaUrl} 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-4 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-black text-lg uppercase tracking-wide transition-all shadow-lg hover:shadow-pink-500/25 flex items-center justify-center gap-2"
+                className={`block w-full py-4 rounded-xl font-black text-lg uppercase tracking-wide transition-all shadow-lg flex items-center justify-center gap-2 ${
+                  result.percentage > 79 
+                    ? 'bg-blue-600 hover:bg-blue-500 hover:shadow-blue-500/25 text-white' 
+                    : 'bg-pink-600 hover:bg-pink-500 hover:shadow-pink-500/25 text-white'
+                }`}
               >
-                Book a Rescue Session <ArrowRight className="w-5 h-5" />
+                {result.ctaText} <ArrowRight className="w-5 h-5" />
               </a>
+              {/* ----------------------------------- */}
               
               <button 
                 onClick={handleRetake}
