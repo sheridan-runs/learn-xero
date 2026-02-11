@@ -13,7 +13,7 @@ export type Option = {
 export const questions: Question[] = [
   {
     id: 1,
-    text: "How do supplier bills (e.g., Spark, Officeworks) get into Xero?",
+    text: "How do supplier bills (e.g., Spark, Rent, Sub-contractors) get into Xero?",
     options: [
       { text: "I print them out and file them physically.", points: 0 },
       { text: "I type the details in manually.", points: 0 },
