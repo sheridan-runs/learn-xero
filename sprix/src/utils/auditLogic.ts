@@ -111,38 +111,42 @@ export const calculateHealthScore = (answers: Record<number, number>) => {
   let action = "";
   let ctaText = "";
   let ctaUrl = "";
-  let ctaContext = ""; // The new "Trust Bridge" field
+  let ctaContext = ""; // The "Why"
+  let ctaSubtext = ""; // The "Security/Reassurance"
 
   if (percentage < 40) {
     title = "The Manual Operator";
-    description = "You are working for Xero; Xero isn't working for you. You are likely spending 4-6 hours a month on tasks that could be automated.";
+    description = "You are likely spending 4-6 hours a month on tasks that could be automated. You are working for Xero; it's not working for you.";
     action = "Stop typing bills manually. Set up 'Auto-forwarding' today.";
     
-    // Low Score Bridge: Pain Agitation
-    ctaContext = "This audit tool was built by Sheridan Jamieson (Nurture). If this result makes you cringe, we can jump in and fix the mess for you.";
-    ctaText = "Fix My Xero File";
+    // Low Score: Agitate Pain -> Offer Rescue
+    ctaContext = "I'm Sheridan, a Virtual CFO. A score this low means your finance function is broken. I can log in, clean up the mess, and automate your admin so you never have to type a receipt again.";
+    ctaText = "Book a Xero Cleanup";
     ctaUrl = "https://nurture.kiwi/virtual-cfo/";
+    ctaSubtext = "One-off project. No monthly retainer required.";
     
   } else if (percentage < 80) {
     title = "The Spreadsheet Survivor";
-    description = "You're safe, but slow. You're doing the basics right, but missing out on the 'magic' features that save time.";
+    description = "You're safe, but slow. You're doing the basics right, but missing out on the 'magic' features (Bank Rules, Bulk Coding) that save hours.";
     action = "Turn on 'Invoice Reminders' and set up 3 Bank Rules this week.";
     
-    // Mid Score Bridge: Optimisation
-    ctaContext = "You are close to having a perfect system. Nurture offers 'Virtual CFO' services to implement the advanced automation features you're missing.";
-    ctaText = "Get Expert Help";
+    // Mid Score: Validation -> Offer Optimization
+    ctaContext = "I'm Sheridan. You're close to a perfect system, but you're leaving efficiency on the table. I offer a 'Xero Tune-Up' to implement the advanced automation you're missing.";
+    ctaText = "Get a Xero Tune-Up";
     ctaUrl = "https://nurture.kiwi/virtual-cfo/";
+    ctaSubtext = "Get your weekends back. Simple flat fee.";
     
   } else {
     title = "The Cloud Native";
     description = "Your books are a well-oiled machine. You have audit trails, automation, and peace of mind.";
     action = "Since your data is clean, you're ready for the next level: Forecasting.";
     
-    // High Score Bridge: Upgrade
-    ctaContext = "Most businesses struggle to forecast because their data is messy. Yours isn't. You are ready to use our free Runway Visualiser.";
-    ctaText = "Visualize Your Runway";
+    // High Score: Praise -> Offer Upgrade
+    ctaContext = "Most businesses can't forecast because their data is messy. Yours isn't. You are ready to stop looking backward and start planning your cash flow.";
+    ctaText = "Launch Runway Visualiser";
     ctaUrl = "https://yourbudget.xyz";
+    ctaSubtext = "Free tool. No signup required.";
   }
 
-  return { percentage, title, description, action, ctaText, ctaUrl, ctaContext };
+  return { percentage, title, description, action, ctaText, ctaUrl, ctaContext, ctaSubtext };
 };
