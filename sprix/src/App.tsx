@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Activity, ArrowRight, Zap, Lock, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { FAQSection } from './FAQSection';
 import { questions, calculateHealthScore } from './utils/auditLogic';
 
 function App() {
@@ -196,7 +197,11 @@ function App() {
           </div>
         </div>
       )}
+{/* 👆 This bracket ends the "Quiz vs Result" logic */}
 
+      {/* --- PASTE FAQ SECTION HERE --- */}
+      <FAQSection />
+      {/* ----------------------------- */}
     </div>
   );
 }
