@@ -11,6 +11,7 @@ export type Option = {
 };
 
 export const questions: Question[] = [
+  // ... (Keep your questions array exactly the same) ...
   {
     id: 1,
     text: "How do supplier bills (e.g. Spark, Rent, Subcontractors) get into Xero?",
@@ -110,26 +111,38 @@ export const calculateHealthScore = (answers: Record<number, number>) => {
   let action = "";
   let ctaText = "";
   let ctaUrl = "";
+  let ctaContext = ""; // The new "Trust Bridge" field
 
   if (percentage < 40) {
     title = "The Manual Operator";
     description = "You are working for Xero; Xero isn't working for you. You are likely spending 4-6 hours a month on tasks that could be automated.";
     action = "Stop typing bills manually. Set up 'Auto-forwarding' today.";
-    ctaText = "Book a Rescue Session";
-    ctaUrl = "https://nurture.kiwi";
+    
+    // Low Score Bridge: Pain Agitation
+    ctaContext = "This audit tool was built by Sheridan Jamieson (Nurture). If this result makes you cringe, we can jump in and fix the mess for you.";
+    ctaText = "Fix My Xero File";
+    ctaUrl = "https://nurture.kiwi/virtual-cfo/";
+    
   } else if (percentage < 80) {
     title = "The Spreadsheet Survivor";
     description = "You're safe, but slow. You're doing the basics right, but missing out on the 'magic' features that save time.";
     action = "Turn on 'Invoice Reminders' and set up 3 Bank Rules this week.";
-    ctaText = "Book a Rescue Session";
-    ctaUrl = "https://nurture.kiwi";
+    
+    // Mid Score Bridge: Optimisation
+    ctaContext = "You are close to having a perfect system. Nurture offers 'Virtual CFO' services to implement the advanced automation features you're missing.";
+    ctaText = "Get Expert Help";
+    ctaUrl = "https://nurture.kiwi/virtual-cfo/";
+    
   } else {
     title = "The Cloud Native";
     description = "Your books are a well-oiled machine. You have audit trails, automation, and peace of mind.";
     action = "Since your data is clean, you're ready for the next level: Forecasting.";
-    ctaText = "Try Runway.Visualiser";
+    
+    // High Score Bridge: Upgrade
+    ctaContext = "Most businesses struggle to forecast because their data is messy. Yours isn't. You are ready to use our free Runway Visualiser.";
+    ctaText = "Visualize Your Runway";
     ctaUrl = "https://yourbudget.xyz";
   }
 
-  return { percentage, title, description, action, ctaText, ctaUrl };
+  return { percentage, title, description, action, ctaText, ctaUrl, ctaContext };
 };
