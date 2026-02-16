@@ -119,22 +119,22 @@ export const calculateHealthScore = (answers: Record<number, number>) => {
     description = "You are likely spending 4-6 hours a month on tasks that could be automated. You are working for Xero; it's not working for you.";
     action = "Stop typing bills manually. Set up 'Auto-forwarding' today.";
     
-    // Low Score: Agitate Pain -> Offer Rescue
-    ctaContext = "I'm Sheridan, a Virtual CFO. A score this low means your finance function is broken. I can log in, clean up the mess, and automate your admin so you never have to type a receipt again.";
+    // Low Score: Empathy First
+    ctaContext = "I'm Sheridan (Nurture). I see files like this all the time, so don't stress. But we do need to fix the foundation before it gets out of control. I can clean up the mess, and help you automate the rest.";
     ctaText = "Book a Xero Cleanup";
     ctaUrl = "https://nurture.kiwi/virtual-cfo/";
-    ctaSubtext = "One-off project. No monthly retainer required.";
+    ctaSubtext = "No judgment. Just a clean slate."; // <--- Friendly & Reassuring
     
   } else if (percentage < 80) {
     title = "The Spreadsheet Survivor";
     description = "You're safe, but slow. You're doing the basics right, but missing out on the 'magic' features (Bank Rules, Bulk Coding) that save hours.";
     action = "Turn on 'Invoice Reminders' and set up 3 Bank Rules this week.";
     
-    // Mid Score: Validation -> Offer Optimization
-    ctaContext = "I'm Sheridan. You're close to a perfect system, but you're leaving efficiency on the table. I offer a 'Xero Tune-Up' to implement the advanced automation you're missing.";
+    // Mid Score: Value First
+    ctaContext = "I'm Sheridan. You have a solid foundation, but you're working harder than you need to. I can help you unlock the automation features you're already paying for.";
     ctaText = "Get a Xero Tune-Up";
     ctaUrl = "https://nurture.kiwi/virtual-cfo/";
-    ctaSubtext = "Get your weekends back. Simple flat fee.";
+    ctaSubtext = "Small tweaks. Massive time savings."; // <--- Benefit Driven
     
   } else {
     title = "The Cloud Native";
