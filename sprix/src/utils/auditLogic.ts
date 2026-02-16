@@ -120,7 +120,7 @@ export const calculateHealthScore = (answers: Record<number, number>) => {
     action = "Stop typing bills manually. Set up 'Auto-forwarding' today.";
     
     // Low Score: Empathy First
-    ctaContext = "I'm Sheridan (Nurture). I see files like this all the time, so don't stress. But we do need to fix the foundation before it gets out of control. I can clean up the mess, and help you automate the rest.";
+    ctaContext = "I'm Sheridan from Nurture. I see files like this all the time, so don't stress. But we do need to fix the foundation before it gets out of control. I can clean up the mess, and help you automate the rest.";
     ctaText = "Book a Xero Cleanup";
     ctaUrl = "https://nurture.kiwi/virtual-cfo/";
     ctaSubtext = "No judgment. Just a clean slate."; // <--- Friendly & Reassuring
@@ -131,7 +131,7 @@ export const calculateHealthScore = (answers: Record<number, number>) => {
     action = "Turn on 'Invoice Reminders' and set up 3 Bank Rules this week.";
     
     // Mid Score: Value First
-    ctaContext = "I'm Sheridan. You have a solid foundation, but you're working harder than you need to. I can help you unlock the automation features you're already paying for.";
+    ctaContext = "Hi, I'm Sheridan 👋. You have a solid foundation, but you're working harder than you need to. I can help you unlock the automation features you're already paying for.";
     ctaText = "Get a Xero Tune-Up";
     ctaUrl = "https://nurture.kiwi/virtual-cfo/";
     ctaSubtext = "Small tweaks. Massive time savings."; // <--- Benefit Driven
