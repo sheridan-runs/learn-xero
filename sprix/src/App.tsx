@@ -159,7 +159,13 @@ function App() {
 
             <div className="pt-6 space-y-4 relative z-10">
               
-              {/* --- DYNAMIC CALL TO ACTION BUTTON --- */}
+              {/* --- NEW: TRUST BRIDGE CONTEXT --- */}
+              <p className="text-slate-400 text-sm italic mb-2 leading-relaxed px-4">
+                "{result.ctaContext}"
+              </p>
+              {/* ---------------------------------- */}
+
+              {/* DYNAMIC CALL TO ACTION BUTTON */}
               <a 
                 href={result.ctaUrl} 
                 target="_blank"
@@ -172,7 +178,6 @@ function App() {
               >
                 {result.ctaText} <ArrowRight className="w-5 h-5" />
               </a>
-              {/* ----------------------------------- */}
               
               <button 
                 onClick={handleRetake}
