@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Activity, ArrowRight, Zap, Lock, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { Activity, ArrowRight, Zap, Lock, RefreshCw, CheckCircle2, User } from 'lucide-react';
 import { FAQSection } from './FAQSection';
 import { questions, calculateHealthScore } from './utils/auditLogic';
 
@@ -9,6 +9,12 @@ function App() {
 
   const handleSelect = (questionId: number, optionIndex: number) => {
     setAnswers(prev => ({ ...prev, [questionId]: optionIndex }));
+  };
+
+  const handleFinish = () => {
+    setShowResult(true);
+    // SCROLL FIX: Snap to top immediately so they see the result, not the footer
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleRetake = () => {
@@ -48,7 +54,7 @@ function App() {
 
       {/* QUIZ SECTION */}
       {!showResult ? (
-        <div className="w-full max-w-2xl pb-32"> {/* Added padding bottom so sticky bar doesn't cover last Q */}
+        <div className="w-full max-w-2xl pb-32"> 
           <div className="space-y-6">
             {questions.map((q) => {
               const isAnswered = answers[q.id] !== undefined;
@@ -86,7 +92,7 @@ function App() {
             })}
           </div>
 
-          {/* TRUST SIGNAL / AUTHOR BIO */}
+          {/* TRUST SIGNAL */}
           <div className="mt-12 p-6 bg-slate-900/30 rounded-2xl border border-slate-800/50 text-center text-sm text-slate-500">
             <p>
               <strong>Why take this audit?</strong> <br/>
@@ -112,7 +118,7 @@ function App() {
               </div>
               <button
                 disabled={!isComplete}
-                onClick={() => setShowResult(true)}
+                onClick={handleFinish} // UPDATED: Calls the new handler with Scroll logic
                 className={`px-8 py-3 rounded-xl font-bold uppercase tracking-wide transition-all ${
                   isComplete
                     ? 'bg-pink-500 hover:bg-pink-400 text-white shadow-lg shadow-pink-500/20 scale-100 cursor-pointer'
@@ -158,27 +164,40 @@ function App() {
               </div>
             </div>
 
-            <div className="pt-6 space-y-4 relative z-10">
+            <div className="pt-6 space-y-6 relative z-10">
               
-              {/* --- NEW: TRUST BRIDGE CONTEXT --- */}
-              <p className="text-slate-400 text-sm italic mb-2 leading-relaxed px-4">
-                "{result.ctaContext}"
-              </p>
-              {/* ---------------------------------- */}
+              {/* --- NEW: FOUNDER'S NOTE CTA --- */}
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 text-left relative overflow-hidden group hover:border-pink-500/30 transition-colors">
+                
+                <div className="flex items-center gap-3 mb-3">
+                   <div className="bg-slate-700 p-1.5 rounded-lg">
+                      <User className="w-4 h-4 text-slate-300" />
+                   </div>
+                   <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Founder's Note</span>
+                </div>
+                
+                <p className="text-slate-200 text-base leading-relaxed mb-6 font-medium">
+                  "{result.ctaContext}"
+                </p>
 
-              {/* DYNAMIC CALL TO ACTION BUTTON */}
-              <a 
-                href={result.ctaUrl} 
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block w-full py-4 rounded-xl font-black text-lg uppercase tracking-wide transition-all shadow-lg flex items-center justify-center gap-2 ${
-                  result.percentage > 79 
-                    ? 'bg-blue-600 hover:bg-blue-500 hover:shadow-blue-500/25 text-white' 
-                    : 'bg-pink-600 hover:bg-pink-500 hover:shadow-pink-500/25 text-white'
-                }`}
-              >
-                {result.ctaText} <ArrowRight className="w-5 h-5" />
-              </a>
+                <a 
+                  href={result.ctaUrl} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block w-full py-4 rounded-xl font-black text-lg uppercase tracking-wide transition-all shadow-lg flex items-center justify-center gap-2 ${
+                    result.percentage > 79 
+                      ? 'bg-blue-600 hover:bg-blue-500 hover:shadow-blue-500/25 text-white' 
+                      : 'bg-pink-600 hover:bg-pink-500 hover:shadow-pink-500/25 text-white'
+                  }`}
+                >
+                  {result.ctaText} <ArrowRight className="w-5 h-5" />
+                </a>
+
+                <div className="text-center mt-3">
+                   <span className="text-xs text-slate-500 font-medium">{result.ctaSubtext}</span>
+                </div>
+              </div>
+              {/* ---------------------------------- */}
               
               <button 
                 onClick={handleRetake}
@@ -197,11 +216,10 @@ function App() {
           </div>
         </div>
       )}
-{/* 👆 This bracket ends the "Quiz vs Result" logic */}
 
-      {/* --- PASTE FAQ SECTION HERE --- */}
+      {/* FAQ SECTION */}
       <FAQSection />
-      {/* ----------------------------- */}
+
     </div>
   );
 }
