@@ -81,6 +81,10 @@ export const FAQSection = () => {
               <a href="https://spreadsheet.school" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
                   Spreadsheet School <ExternalLink className="w-3 h-3" />
               </a>
+              <span className="text-slate-700">•</span>
+              <a href="https://owly.co.nz" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                Owly <ExternalLink className="w-3 h-3" />
+              </a>
           </div>
           <div className="text-xs text-slate-700">
             &copy; {new Date().getFullYear()} Nurture. All rights reserved.
